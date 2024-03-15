@@ -2,7 +2,7 @@ import re
 
 
 from markdown_to_html.patterns import ITALIC_PATTERN, BOLD_PATTERN, CODE_PATTERN
-from markdown_to_html.syntax_validation import nested_tags_check, check_opened_tags
+from markdown_to_html.syntax_validation import nested_tags_check, check_opened_tags, remove_empty_paragraphs
 
 
 def split_by_code_entities(text):
@@ -46,7 +46,6 @@ def wrap_with_tag(text, pattern, tag, number_of_symbols):
         text = (text[:start] + f"<{tag}>" + text[start + number_of_symbols:end - number_of_symbols] +
                                f"</{tag}>" + text[end:])
         offset += len(f"<{tag}></{tag}>") - number_of_symbols*2
-        print(text)
     return text
 
 
@@ -57,13 +56,11 @@ def split_by_entities(text_array, pattern, tag, number_of_symbols):
             new_text_array += [paragraph]
             continue
         new_text_array += [wrap_with_tag(paragraph, pattern, tag, number_of_symbols)]
-        # ось тут перевіряти чи є відкриті теги (передати параграф у функцію)
     return new_text_array
 
 
 def process_text(text):
     array_with_code_parts = split_by_code_entities(text)
-    print(array_with_code_parts)
     array_with_paragraphs = []
     for part_of_array in array_with_code_parts:
         if part_of_array[3:8] == "<pre>":
@@ -76,5 +73,6 @@ def process_text(text):
     bold_parts = split_by_entities(code_parts, BOLD_PATTERN, "b", 2)
     italic_parts = split_by_entities(bold_parts, ITALIC_PATTERN, "i", 1)
     check_opened_tags(italic_parts)
-    # тут перевірити чи є відкриті теги
-    return italic_parts
+    html_text = remove_empty_paragraphs(italic_parts)
+    html_string = '\n'.join(html_text)
+    return html_string
