@@ -10,7 +10,6 @@ def check_nested_tags_for_each_style(nested_style_matches, pattern_1, pattern_2)
         match = ' ' + match
         nested_matches += pattern_1.findall(match)
         nested_matches += pattern_2.findall(match)
-        print(nested_matches)
     if len(nested_matches) > 0:
         raise ValueError(f"Not nested markdown")
 
@@ -36,3 +35,36 @@ def check_opened_tags(text):
         matches += CLOSED_BACKTICK_PATTERN.findall(sentence)
         if len(matches) != 0:
             raise ValueError("Find open tag")
+
+
+def remove_empty_paragraphs(paragraphs):
+    final_html_text = []
+    for paragraph in paragraphs:
+        if paragraph == "<p></p>":
+            continue
+        final_html_text += [paragraph]
+    return final_html_text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
