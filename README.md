@@ -8,20 +8,26 @@ The output can either be displayed in the console or saved to a file.
 
 Clone this repo:
 
-``` git clone https://github.com/OlhaMish/software-development-lab-1 ```
+```bash
+ git clone https://github.com/OlhaMish/software-development-lab-1 
+ ```
 
-Then install poetry following official instruction:
-```https://python-poetry.org/docs/```
+[Then install poetry following official instruction](https://python-poetry.org/docs/) 
+
 
 ### Run application:
 
-```poetry run python markdown2hml.py <path/to/your/input/file> ```
+```bash
+poetry run python markdown2hml.py <path/to/your/input/file> 
+```
 
 Explore commands:
 
-```poetry run python markdown2hml.py --help```
-
+```bash
+poetry run python markdown2hml.py --help
 ```
+
+```bash
 usage: markdown2hml.py [-h] [--output OUTPUT] input_file
 
 Convert Markdown to HTML.
@@ -38,7 +44,7 @@ options:
 
 ### Example
 
-```
+```markdown
 Alice's Adventures in Wonderland by Lewis Carroll
 
 
@@ -50,12 +56,14 @@ As she navigates through this `strange land`, she encounters a series of nonsens
 
 ### Parse it:
 
-```poetry run python markdown2hml.py input.md -o output.html ```
+```bash
+poetry run python markdown2hml.py input.md -o output.html 
+```
 
 
 output.html:
 
-```
+```html
 <p>Alice's Adventures in Wonderland by Lewis Carroll</p>
 <p> This novel follows the story of a young girl named <i>Alice</i> who falls down a rabbit hole into a <b>fantastical world full of peculiar creatures</b> and bizarre experiences. 
 As she navigates through this <tt>strange land</tt>, she encounters a series of nonsensical events, including a tea party with a <i>Mad Hatter</i>, a pool of tears, and a trial over stolen tarts.</p>
