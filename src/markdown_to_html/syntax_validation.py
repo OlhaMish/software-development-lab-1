@@ -11,7 +11,7 @@ def check_nested_tags_for_each_style(nested_style_matches, pattern_1, pattern_2)
         nested_matches += pattern_1.findall(match)
         nested_matches += pattern_2.findall(match)
     if len(nested_matches) > 0:
-        raise ValueError(f"Not nested markdown")
+        raise ValueError(f"Nested tags found")
 
 
 def nested_tags_check(text):
@@ -34,7 +34,7 @@ def check_opened_tags(text):
         matches += OPENING_BACKTICK_PATTERN.findall(sentence)
         matches += CLOSED_BACKTICK_PATTERN.findall(sentence)
         if len(matches) != 0:
-            raise ValueError("Find open tag")
+            raise ValueError("Non-closed tag found")
 
 
 def remove_empty_paragraphs(paragraphs):
@@ -44,27 +44,3 @@ def remove_empty_paragraphs(paragraphs):
             continue
         final_html_text += [paragraph]
     return final_html_text
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
